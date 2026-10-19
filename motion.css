@@ -1,0 +1,22 @@
+/* Reveal on scroll */
+.motion-enabled .reveal{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .9s var(--ease) var(--delay,0ms),transform 1.1s var(--ease) var(--delay,0ms),filter .9s var(--ease) var(--delay,0ms)}
+.motion-enabled .reveal.is-in{opacity:1;transform:none;filter:none}
+.motion-enabled .reveal:focus-within{opacity:1;transform:none;filter:none}
+
+/* Press feedback */
+a,button,summary{transition-property:scale,color,background-color,opacity,background-size;transition-duration:.18s,.2s,.25s,.2s,.45s;transition-timing-function:var(--ease)}
+.solid-button:active,.header-contact:active,.chip-nav a:active,.filters button:active,.is-pressed{scale:.97}
+
+/* Menus */
+.mobile-nav:not([hidden]){animation:fade .3s var(--ease)}
+.mobile-nav:not([hidden]) li{animation:rise .55s var(--ease) both}
+.mobile-nav li:nth-child(2){animation-delay:.05s}.mobile-nav li:nth-child(3){animation-delay:.1s}.mobile-nav li:nth-child(4){animation-delay:.15s}
+.faq-item[data-expanded=true] .faq-answer{animation:fade .5s var(--ease)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1!important;transform:none!important;filter:none!important}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
