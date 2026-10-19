@@ -562,3 +562,46 @@ h1,h2,.statement-title,.footer-title{text-wrap:balance}
 @media(prefers-reduced-motion:reduce){.grain,.chrome-seal::before,.over-glow{animation:none!important}}
 /* Clip the drifting bloom without breaking position:sticky (overflow:hidden would). */
 .over-scroll{overflow:clip}
+
+/* ==========================================================================
+   v1.1 — stronger texture & 3D metal
+   ========================================================================== */
+.grain{opacity:.16;mix-blend-mode:overlay;background-size:180px}
+[data-dark] .grain,.grain{filter:contrast(1.4)}
+@media(max-width:700px){.grain{opacity:.14}}
+
+/* Dark metallic page heads (work / services / about / contact) */
+.page-head-dark{position:relative;overflow:clip;background:#000;color:#efefef;padding:0;min-height:min(78svh,760px);display:flex;align-items:flex-end;isolation:isolate}
+.ph-inner{position:relative;z-index:2;width:100%;padding-top:calc(var(--header) + clamp(80px,12vw,180px));padding-bottom:clamp(48px,6vw,88px)}
+.page-head-dark .page-lead{color:rgb(239 239 239 / 78%)}
+.page-head-dark .inline-link{color:#efefef}
+.ph-bloom{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(45% 55% at 72% 38%,rgb(255 255 255 / 34%),rgb(170 170 170 / 12%) 42%,transparent 70%),radial-gradient(30% 40% at 15% 100%,rgb(255 255 255 / 10%),transparent 70%)}
+.motion-enabled .ph-bloom{animation:bloom 10s ease-in-out infinite alternate}
+.page-head-dark::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:var(--grain);background-size:160px;opacity:.22;mix-blend-mode:overlay}
+.chrome-title{font-size:clamp(88px,13vw,200px);font-weight:200;line-height:1;letter-spacing:-.02em;
+  background:linear-gradient(175deg,#fff 0%,#cfcfcf 20%,#6f6f6f 38%,#f6f6f6 50%,#8f8f8f 64%,#ececec 78%,#5c5c5c 100%),radial-gradient(60% 120% at var(--sx,30%) var(--sy,20%),#fff,transparent 60%);
+  background-blend-mode:screen;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 1px 0 rgb(255 255 255 / 25%)) drop-shadow(0 18px 40px rgb(0 0 0 / 60%))}
+.page-head-dark .filters{background:rgb(255 255 255 / 8%);box-shadow:inset 0 1px 0 rgb(255 255 255 / 10%)}
+.page-head-dark .filters button{color:rgb(239 239 239 / 65%)}
+.page-head-dark .filters button:hover,.page-head-dark .filters button[aria-pressed=true]{color:#000}
+.page-head-dark .filters button:hover:not([aria-pressed=true]){color:#fff}
+.page-head-dark .chip-nav a{border-color:rgb(255 255 255 / 22%);color:#efefef}
+.page-head-dark .chip-nav a:hover{background:#efefef;color:#000;border-color:#efefef}
+
+/* 3D liquid-metal seal: two chrome faces spinning in perspective with a floor shadow */
+.seal3d{position:absolute;z-index:1;pointer-events:none;perspective:1200px}
+.seal3d-spin{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(14deg) rotateY(calc(var(--spin,0) * 1deg))}
+.motion-enabled .seal3d-spin{animation:seal-y 14s linear infinite}
+@keyframes seal-y{from{transform:rotateX(14deg) rotateY(0)}to{transform:rotateX(14deg) rotateY(360deg)}}
+.seal3d .chrome-seal{position:absolute;inset:0;backface-visibility:hidden;filter:drop-shadow(0 0 18px rgb(255 255 255 / 25%))}
+.s3-back{transform:rotateY(180deg)}
+.seal3d-shadow{position:absolute;left:15%;right:15%;bottom:-14%;height:10%;border-radius:50%;background:radial-gradient(closest-side,rgb(255 255 255 / 18%),transparent)}
+.ph-seal{right:clamp(16px,6vw,120px);top:calc(var(--header) + 32px);width:clamp(180px,26vw,380px);aspect-ratio:1}
+.over-seal{right:-6vw;bottom:-8vw;width:clamp(260px,34vw,520px);aspect-ratio:1;opacity:.55}
+@media(max-width:900px){.over-seal{display:none}}
+@media(max-width:700px){
+  .page-head-dark{min-height:68svh}
+  .ph-seal{width:46vw;right:-6vw;top:calc(var(--header) + 12px);opacity:.85}
+  .chrome-title{font-size:clamp(72px,22vw,110px)}
+}
+@media(prefers-reduced-motion:reduce){.seal3d-spin{animation:none!important}}

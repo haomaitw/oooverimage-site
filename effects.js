@@ -77,7 +77,7 @@
   }
 
   /* Chrome highlight follows the pointer on the headline, the over story and the footer wordmark. */
-  const chromes = [...document.querySelectorAll('.chrome-text, .over-lead, .footer-wordmark, .over-items')];
+  const chromes = [...document.querySelectorAll('.chrome-text, .chrome-title, .over-lead, .footer-wordmark, .over-items')];
   let cf = 0, lx = 0, ly = 0;
   const sheen = () => {
     cf = 0;
