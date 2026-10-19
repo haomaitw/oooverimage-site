@@ -8,29 +8,29 @@
 - 母品牌：異想天開影像 子品牌
 
 ## 服務
-- [MV 與品牌影像](https://haomaitw.github.io/oooverimage-site/services/#film)：把音樂與品牌想說的，拍成一支片。從企劃、拍攝到剪輯，製作主題曲 MV、COVER MV、品牌形象廣告與社群短影音。先對齊觀眾與發布平台，再決定敘事與畫面。 常見品項：主題曲 MV、COVER MV、品牌形象廣告、環境介紹影片、社群短影音。
-- [舞台演出紀錄](https://haomaitw.github.io/oooverimage-site/services/#stage)：演出的每一個高光，都留得住。熱音、吉他、舞蹈與樂團演出。平面捕捉表情與燈光，定機錄影完整保存每一首，動態精華剪成可以分享的片段。 常見品項：舞台平面紀錄、特寫抓拍、定機錄影（含分段剪輯）、舞台動態精華、演出形象照。
-- [活動紀錄](https://haomaitw.github.io/oooverimage-site/services/#event)：活動結束後，內容還能繼續被使用。品牌活動、營隊、餐會與研討會。依流程安排紀錄重點，可做當天剪輯播放的 SDE 快剪快播，讓現場氣氛在活動尾聲就被看見。 常見品項：活動平面紀錄、活動動態紀錄、SDE 快剪快播、研討會紀錄。
-- [形象照與人像](https://haomaitw.github.io/oooverimage-site/services/#portrait)：讓人物的樣子，有自己的個性。社團與團體形象照、教師形象照與個人寫真。從場景、服裝到色調一起討論，交付前提供色調範例確認方向。 常見品項：社團與團體形象照、教師形象照、個人寫真、學士服、婚紗。
-- [商品與食品攝影](https://haomaitw.github.io/oooverimage-site/services/#product)：讓細節與風味，都被看見。菜單、商品與營業側拍。依品項與使用平台安排光線與構圖，交付可直接用於菜單、電商與社群的照片。 常見品項：菜單與商品拍攝、營業側拍。
+- [MV 與品牌影像](https://oooverimage.studio/services/#film)：把音樂與品牌想說的，拍成一支片。從企劃、拍攝到剪輯，製作主題曲 MV、COVER MV、品牌形象廣告與社群短影音。先對齊觀眾與發布平台，再決定敘事與畫面。 常見品項：主題曲 MV、COVER MV、品牌形象廣告、環境介紹影片、社群短影音。
+- [舞台演出紀錄](https://oooverimage.studio/services/#stage)：演出的每一個高光，都留得住。熱音、吉他、舞蹈與樂團演出。平面捕捉表情與燈光，定機錄影完整保存每一首，動態精華剪成可以分享的片段。 常見品項：舞台平面紀錄、特寫抓拍、定機錄影（含分段剪輯）、舞台動態精華、演出形象照。
+- [活動紀錄](https://oooverimage.studio/services/#event)：活動結束後，內容還能繼續被使用。品牌活動、營隊、餐會與研討會。依流程安排紀錄重點，可做當天剪輯播放的 SDE 快剪快播，讓現場氣氛在活動尾聲就被看見。 常見品項：活動平面紀錄、活動動態紀錄、SDE 快剪快播、研討會紀錄。
+- [形象照與人像](https://oooverimage.studio/services/#portrait)：讓人物的樣子，有自己的個性。社團與團體形象照、教師形象照與個人寫真。從場景、服裝到色調一起討論，交付前提供色調範例確認方向。 常見品項：社團與團體形象照、教師形象照、個人寫真、學士服、婚紗。
+- [商品與食品攝影](https://oooverimage.studio/services/#product)：讓細節與風味，都被看見。菜單、商品與營業側拍。依品項與使用平台安排光線與構圖，交付可直接用於菜單、電商與社群的照片。 常見品項：菜單與商品拍攝、營業側拍。
 
 ## 作品
-- [逗點教室 影院廣告](https://haomaitw.github.io/oooverimage-site/work/comma-ad/)（MV 與品牌影像・動態）：教育品牌的 30 秒影院廣告，記錄課堂、戶外教學與孩子的笑容。
-- [長庚熱音 成果發表](https://haomaitw.github.io/oooverimage-site/work/cgu-2025/)（舞台演出紀錄・平面・2025）：Live house 舞台紀錄，以燈光與表情為主軸，捕捉每位表演者的高光時刻。
-- [無極西瓜刀《聽說2025是世界末日》專場](https://haomaitw.github.io/oooverimage-site/work/xgd-2025/)（舞台演出紀錄・平面・2025）：獨立樂團專場演出紀錄，在近距離的現場裡拍下樂手與觀眾的能量。
-- [牙醫師一日職涯體驗營 SDE](https://haomaitw.github.io/oooverimage-site/work/dentist-sde/)（活動紀錄・動態・2025）：營隊活動的當日快剪快播，在活動結束前把一天的實作與互動剪成回顧影片。
-- [陽明音創 形象照](https://haomaitw.github.io/oooverimage-site/work/ym-portrait-2026/)（形象照與人像・平面・2026）：音樂社團的個人照、組照與大合照，在復古場景裡呈現每個人的風格。
-- [大胖漢堡 攝影集](https://haomaitw.github.io/oooverimage-site/work/burger/)（商品與食品攝影・平面・2024）：漢堡與餐點的食品攝影，以深色背景與側光強調食材層次。
-- [摩洛哥優油 業配影片](https://haomaitw.github.io/oooverimage-site/work/morocco/)（MV 與品牌影像・動態）：美髮品牌的直式業配影片，為社群平台設計的節奏與畫面。
-- [壢中熱音 大成發](https://haomaitw.github.io/oooverimage-site/work/lz-2024/)（舞台演出紀錄・平面・2024）：高中熱音社成果發表，從表演、感性時間到謝幕完整紀錄。
-- [陽明音創 形象照](https://haomaitw.github.io/oooverimage-site/work/ym-portrait-2025/)（形象照與人像・平面・2025）：以老街區與天井為場景的社團形象照，冷調色彩搭配個人造型。
-- [過度影像 募資 T-shirt 形象照](https://haomaitw.github.io/oooverimage-site/work/tee-2023/)（MV 與品牌影像・平面・2023）：工作室自有商品的形象照，以夜晚球場與室內生活場景呈現衣服的穿搭。
-- [台大法律 李茂生教授退休餐會](https://haomaitw.github.io/oooverimage-site/work/li-2023/)（活動紀錄・平面＋動態・2023）：退休餐會的照片紀錄與回顧影片，留下師生與來賓之間的互動。
-- [桃高吉他 形象照](https://haomaitw.github.io/oooverimage-site/work/tyg-guitar-2025/)（形象照與人像・平面・2025）：吉他社的個人照與團體照，在主題場景中呈現每位成員的個性。
-- [新北市玩具銀行「玩宇宙」成果展](https://haomaitw.github.io/oooverimage-site/work/toybank-2023/)（活動紀錄・平面＋動態・2023）：玩具循環藝術長幼培力計畫的成果展與活動紀錄影片。
-- [弦月吉他 大成發](https://haomaitw.github.io/oooverimage-site/work/xianyue-2024/)（舞台演出紀錄・平面・2024）：吉他社成果發表，冷色舞台燈下的獨唱與合奏。
-- [銘傳 學士服形象照](https://haomaitw.github.io/oooverimage-site/work/mcu-2025/)（形象照與人像・平面・2025）：畢業季的學士服團體照，在校園各處拍下輕鬆有趣的畫面。
-- [陽明音創 成果發表](https://haomaitw.github.io/oooverimage-site/work/ym-stage-2025/)（舞台演出紀錄・平面＋動態・2025）：音樂社團成果發表的舞台紀錄與定機錄影。
+- [逗點教室 影院廣告](https://oooverimage.studio/work/comma-ad/)（MV 與品牌影像・動態）：教育品牌的 30 秒影院廣告，記錄課堂、戶外教學與孩子的笑容。
+- [長庚熱音 成果發表](https://oooverimage.studio/work/cgu-2025/)（舞台演出紀錄・平面・2025）：Live house 舞台紀錄，以燈光與表情為主軸，捕捉每位表演者的高光時刻。
+- [無極西瓜刀《聽說2025是世界末日》專場](https://oooverimage.studio/work/xgd-2025/)（舞台演出紀錄・平面・2025）：獨立樂團專場演出紀錄，在近距離的現場裡拍下樂手與觀眾的能量。
+- [牙醫師一日職涯體驗營 SDE](https://oooverimage.studio/work/dentist-sde/)（活動紀錄・動態・2025）：營隊活動的當日快剪快播，在活動結束前把一天的實作與互動剪成回顧影片。
+- [陽明音創 形象照](https://oooverimage.studio/work/ym-portrait-2026/)（形象照與人像・平面・2026）：音樂社團的個人照、組照與大合照，在復古場景裡呈現每個人的風格。
+- [大胖漢堡 攝影集](https://oooverimage.studio/work/burger/)（商品與食品攝影・平面・2024）：漢堡與餐點的食品攝影，以深色背景與側光強調食材層次。
+- [摩洛哥優油 業配影片](https://oooverimage.studio/work/morocco/)（MV 與品牌影像・動態）：美髮品牌的直式業配影片，為社群平台設計的節奏與畫面。
+- [壢中熱音 大成發](https://oooverimage.studio/work/lz-2024/)（舞台演出紀錄・平面・2024）：高中熱音社成果發表，從表演、感性時間到謝幕完整紀錄。
+- [陽明音創 形象照](https://oooverimage.studio/work/ym-portrait-2025/)（形象照與人像・平面・2025）：以老街區與天井為場景的社團形象照，冷調色彩搭配個人造型。
+- [過度影像 募資 T-shirt 形象照](https://oooverimage.studio/work/tee-2023/)（MV 與品牌影像・平面・2023）：工作室自有商品的形象照，以夜晚球場與室內生活場景呈現衣服的穿搭。
+- [台大法律 李茂生教授退休餐會](https://oooverimage.studio/work/li-2023/)（活動紀錄・平面＋動態・2023）：退休餐會的照片紀錄與回顧影片，留下師生與來賓之間的互動。
+- [桃高吉他 形象照](https://oooverimage.studio/work/tyg-guitar-2025/)（形象照與人像・平面・2025）：吉他社的個人照與團體照，在主題場景中呈現每位成員的個性。
+- [新北市玩具銀行「玩宇宙」成果展](https://oooverimage.studio/work/toybank-2023/)（活動紀錄・平面＋動態・2023）：玩具循環藝術長幼培力計畫的成果展與活動紀錄影片。
+- [弦月吉他 大成發](https://oooverimage.studio/work/xianyue-2024/)（舞台演出紀錄・平面・2024）：吉他社成果發表，冷色舞台燈下的獨唱與合奏。
+- [銘傳 學士服形象照](https://oooverimage.studio/work/mcu-2025/)（形象照與人像・平面・2025）：畢業季的學士服團體照，在校園各處拍下輕鬆有趣的畫面。
+- [陽明音創 成果發表](https://oooverimage.studio/work/ym-stage-2025/)（舞台演出紀錄・平面＋動態・2025）：音樂社團成果發表的舞台紀錄與定機錄影。
 
 ## 合作方式
 1. 詢價：說明拍攝類型、日期、地點與需求，有參考作品也可以附上。
