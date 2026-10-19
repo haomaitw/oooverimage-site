@@ -76,6 +76,25 @@
     document.addEventListener('pointerleave', () => cursor.classList.remove('is-on'));
   }
 
+  /* Chrome highlight follows the pointer on the headline, the over story and the footer wordmark. */
+  const chromes = [...document.querySelectorAll('.chrome-text, .over-lead, .footer-wordmark, .over-items')];
+  let cf = 0, lx = 0, ly = 0;
+  const sheen = () => {
+    cf = 0;
+    for (const el of chromes) {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) continue;
+      el.style.setProperty('--sx', `${(((lx - r.left) / r.width) * 100).toFixed(1)}%`);
+      el.style.setProperty('--sy', `${(((ly - r.top) / r.height) * 100).toFixed(1)}%`);
+    }
+  };
+  if (chromes.length) document.addEventListener('pointermove', e => { if (!pointerFx()) return; lx = e.clientX; ly = e.clientY; if (!cf) cf = requestAnimationFrame(sheen); }, {passive: true});
+  // Touch screens: the sheen drifts slowly instead.
+  if (chromes.length && !fine.matches && !reduce.matches) {
+    let t = 0;
+    setInterval(() => { t += .02; chromes.forEach(el => { el.style.setProperty('--sx', `${50 + Math.sin(t) * 45}%`); el.style.setProperty('--sy', `${30 + Math.cos(t * .7) * 30}%`); }); }, 50);
+  }
+
   /* Magnetic primary buttons (subtle). */
   document.querySelectorAll('.solid-button').forEach(b => {
     b.addEventListener('pointermove', e => {

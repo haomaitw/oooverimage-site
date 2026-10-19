@@ -502,3 +502,63 @@ h1,h2,.statement-title,.footer-title{text-wrap:balance}
   .over-item .ow-text,.over-item.is-on .ow-text{display:block;position:absolute;left:0;right:0;bottom:0;font-size:16px;line-height:1.6;max-width:none}
   .over-media{height:100%;max-height:none;aspect-ratio:auto}
 }
+
+/* ==========================================================================
+   v1.0 — texture & metal (after INTENTION: grain, light bloom, chrome), kept to the black / #EFEFEF identity
+   ========================================================================== */
+/* Film grain across the whole site */
+/* Stays exactly inside the viewport (an oversized fixed layer widens the page on mobile browsers); the texture moves, not the box. */
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;overflow:hidden;background:var(--grain);background-size:220px;opacity:.07;mix-blend-mode:overlay}
+.motion-enabled .grain{animation:grain-shift .8s steps(5) infinite}
+@keyframes grain-shift{0%{background-position:0 0}20%{background-position:-60px 40px}40%{background-position:45px -70px}60%{background-position:-80px -30px}80%{background-position:70px 55px}100%{background-position:0 0}}
+
+/* Chrome type: a metallic gradient clipped to the letters; the highlight follows the pointer (--sx/--sy). */
+.chrome-text .over,.chrome-text .rotator>span,.over-lead,.footer-wordmark,.ow-word{
+  background:linear-gradient(175deg,#fff 0%,#d8d8d8 18%,#7d7d7d 34%,#f4f4f4 48%,#9c9c9c 60%,#e9e9e9 74%,#6c6c6c 100%),radial-gradient(60% 120% at var(--sx,30%) var(--sy,20%),rgb(255 255 255 / 90%),transparent 60%);
+  background-size:100% 100%,100% 100%;background-blend-mode:screen;
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.chrome-text .over{font-weight:200}
+.hero h1.chrome-text{filter:drop-shadow(0 2px 24px rgb(0 0 0 / 35%)) drop-shadow(0 1px 0 rgb(255 255 255 / 25%));text-shadow:none}
+.over-item:not(.is-on) .ow-word{opacity:.22}
+.over-item .ow-word{transition:opacity .6s var(--ease)}
+
+/* Liquid-metal seal: conic sheen turning inside the logo mask */
+.chrome-seal{display:block;position:relative;overflow:hidden;-webkit-mask:var(--mask) center/contain no-repeat;mask:var(--mask) center/contain no-repeat}
+.chrome-seal::before{content:"";position:absolute;inset:-25%;background:conic-gradient(from calc(var(--spin,0) * 1deg),#5a5a5a,#fff 12%,#8c8c8c 22%,#efefef 35%,#4d4d4d 48%,#dcdcdc 60%,#7a7a7a 72%,#fff 85%,#5a5a5a)}
+.motion-enabled .chrome-seal::before{animation:metal-turn 9s linear infinite}
+@keyframes metal-turn{to{transform:rotate(360deg)}}
+.footer-seal.chrome-seal{rotate:none}
+
+/* Silver light bloom in dark sections */
+.over-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(42% 38% at 28% 42%,rgb(255 255 255 / 22%),rgb(180 180 180 / 8%) 45%,transparent 70%)}
+.motion-enabled .over-glow{animation:bloom 9s ease-in-out infinite alternate}
+@keyframes bloom{to{transform:translate(4%,6%) scale(1.15);opacity:.75}}
+.footer::before{background:radial-gradient(50% 55% at 82% 18%,rgb(255 255 255 / 16%),rgb(140 140 140 / 6%) 45%,transparent 72%),radial-gradient(40% 40% at 10% 90%,rgb(255 255 255 / 6%),transparent 70%)}
+
+/* Case study: campaign-style full-bleed opener */
+.case-hero{position:relative;height:100svh;min-height:520px;background:#000;color:#efefef;overflow:hidden}
+.case-hero-media{position:absolute;inset:0;width:100%;height:100%;border-radius:0;cursor:zoom-in;background:#000}
+.case-hero-media img{width:100%;height:100%;object-fit:cover}
+.case-hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgb(0 0 0 / 45%) 0,transparent 26%,transparent 55%,rgb(0 0 0 / 70%) 100%)}
+.case-hero-text{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(28px,5vw,64px);z-index:2;pointer-events:none}
+.case-kicker{font-size:var(--fs-small);letter-spacing:.08em;color:rgb(239 239 239 / 80%)}
+.case-hero h1{margin-top:10px;max-width:16em;font-size:clamp(40px,6.4vw,104px);font-weight:200;line-height:1.08;text-shadow:0 2px 30px rgb(0 0 0 / 30%)}
+.case-hero.is-film{height:auto;min-height:0;padding-top:calc(var(--header) + 24px)}
+.case-hero.is-film::after{display:none}
+.case-film-hero video{display:block;width:100%;max-height:calc(100svh - var(--header) - 24px);margin:0 auto;background:#000}
+.case-hero.is-film .case-hero-text{position:relative;left:auto;right:auto;bottom:auto;padding:24px var(--gutter) 32px;pointer-events:auto}
+.case-head{padding-top:clamp(48px,6vw,88px)}
+.case-head-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,72px);align-items:start;margin-top:8px}
+.case-head-grid .case-summary{margin-top:0;font-size:var(--fs-lead)}
+.case-head-grid .case-meta{margin-top:0;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;padding-top:18px}
+.case-media{padding-top:0}
+@media(max-width:900px){.case-head-grid{grid-template-columns:1fr}}
+@media(max-width:700px){
+  .case-hero{height:86svh}
+  .case-hero h1{font-size:clamp(34px,10vw,48px)}
+  .case-head-grid .case-meta{grid-template-columns:1fr 1fr}
+  .grain{opacity:.06}
+}
+@media(prefers-reduced-motion:reduce){.grain,.chrome-seal::before,.over-glow{animation:none!important}}
+/* Clip the drifting bloom without breaking position:sticky (overflow:hidden would). */
+.over-scroll{overflow:clip}
