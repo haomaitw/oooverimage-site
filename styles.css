@@ -605,3 +605,9 @@ h1,h2,.statement-title,.footer-title{text-wrap:balance}
   .chrome-title{font-size:clamp(72px,22vw,110px)}
 }
 @media(prefers-reduced-motion:reduce){.seal3d-spin{animation:none!important}}
+/* Filmstrip: one even band — every frame the same height, portrait and landscape alternating; clear gap below. */
+.filmstrip{padding-bottom:clamp(72px,8vw,120px)}
+.strip-track{align-items:stretch}
+.frame,.frame:nth-child(3n+2){height:clamp(220px,22vw,340px);width:auto;aspect-ratio:4/5;align-self:auto}
+.frame:nth-child(even){aspect-ratio:3/2}
+@media(max-width:700px){.frame,.frame:nth-child(3n+2){height:200px;width:auto}}
