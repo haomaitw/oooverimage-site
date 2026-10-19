@@ -1,6 +1,8 @@
 (() => {
   'use strict';
   const $ = (s, el = document) => el.querySelector(s);
+  // Locale strings written into each page by build.mjs.
+  const T = window.OVI || {};
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
@@ -38,7 +40,7 @@
   function setMenu(open) {
     mobileNav.hidden = !open;
     menuButton.setAttribute('aria-expanded', String(open));
-    menuButton.querySelector('.menu-label').textContent = open ? '關閉' : '選單';
+    menuButton.querySelector('.menu-label').textContent = open ? mobileNav.dataset.close : mobileNav.dataset.open;
     header.classList.toggle('menu-open', open);
     document.body.classList.toggle('lock', open);
   }
@@ -84,7 +86,7 @@
       paused = value;
       hero.classList.toggle('is-paused', paused);
       toggle.setAttribute('aria-pressed', String(paused));
-      toggle.setAttribute('aria-label', paused ? '播放輪播' : '暫停輪播');
+      toggle.setAttribute('aria-label', paused ? T.play : T.pause);
       slides[current].querySelector('video')?.[paused ? 'pause' : 'play']()?.catch?.(() => {});
       show(current);
     }
@@ -222,19 +224,19 @@
     if (wanted && $(`option[value="${CSS.escape(wanted)}"]`, service)) service.value = wanted;
     const field = id => document.getElementById(id).value.trim();
     const compose = () => [
-      '你好，過度影像！我想詢問拍攝合作。',
-      `拍攝類型：${service.selectedOptions[0].textContent}`,
-      ...[['需要的內容','brief-format'],['日期與地點','brief-date'],['預算範圍','brief-budget'],['稱呼與聯絡方式','brief-name']].map(([l, id]) => field(id) ? `${l}：${field(id)}` : ''),
-      field('brief-idea') ? `拍攝需求：${field('brief-idea')}` : ''
+      T.hi,
+      `${T.type}: ${service.selectedOptions[0].textContent}`,
+      ...[[T.need,'brief-format'],[T.date,'brief-date'],[T.budget,'brief-budget'],[T.name,'brief-name']].map(([l, id]) => field(id) ? `${l}: ${field(id)}` : ''),
+      field('brief-idea') ? `${T.idea}: ${field('brief-idea')}` : ''
     ].filter(Boolean).join('\n');
-    const syncMail = () => { mail.href = `mailto:oooverimage@gmail.com?subject=${encodeURIComponent('拍攝合作詢問｜' + service.selectedOptions[0].textContent)}&body=${encodeURIComponent(compose())}`; };
+    const syncMail = () => { mail.href = `mailto:oooverimage@gmail.com?subject=${encodeURIComponent(T.subject + ' | ' + service.selectedOptions[0].textContent)}&body=${encodeURIComponent(compose())}`; };
     const reset = () => { status.textContent = ''; delete status.dataset.state; };
     form.addEventListener('input', () => { reset(); syncMail(); });
     form.addEventListener('change', syncMail);
     syncMail();
     const valid = () => {
       if (field('brief-idea')) return true;
-      status.textContent = '請先寫下想拍的內容。'; status.dataset.state = 'error'; $('#brief-idea').focus(); return false;
+      status.textContent = T.needIdea; status.dataset.state = 'error'; $('#brief-idea').focus(); return false;
     };
     // Primary: open the visitor's mail app with the brief filled in.
     form.addEventListener('submit', e => {
@@ -243,7 +245,7 @@
       syncMail();
       track('inquiry_email_open', {category: service.value});
       location.href = mail.href;
-      status.textContent = '已開啟郵件程式，確認內容後寄出即可。若沒有開啟，請按「複製內容」，再寄到 oooverimage@gmail.com。';
+      status.textContent = T.opened;
       status.dataset.state = 'ok';
     });
     $('.brief-copy', form).addEventListener('click', async () => {
@@ -251,10 +253,10 @@
       const text = compose();
       try {
         await navigator.clipboard.writeText(text);
-        status.textContent = '已複製，尚未寄出。請貼到 Email（oooverimage@gmail.com）或 Instagram 私訊。'; status.dataset.state = 'ok';
+        status.textContent = T.copied; status.dataset.state = 'ok';
         track('inquiry_copy_success', {category: service.value});
       } catch {
-        status.textContent = '無法自動複製，請手動選取以下內容：\n\n' + text; status.dataset.state = 'error';
+        status.textContent = T.copyFail + '\n\n' + text; status.dataset.state = 'error';
       }
     });
   }
