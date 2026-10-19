@@ -17,8 +17,13 @@
 
   /* ---------- Header: tone over dark heroes, hide on scroll down ---------- */
   const header = $('.header');
-  const darkHero = $('[data-hero]');
-  if (darkHero) new IntersectionObserver(([e]) => { header.dataset.tone = e.isIntersecting ? 'dark' : 'light'; }, {rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header')) || 80}px 0px 0px 0px`}).observe(darkHero);
+  // Light glass on paper, dark glass while any [data-dark] section sits under the bar.
+  const darkSections = $$('[data-dark]');
+  const setTone = () => {
+    const y = header.getBoundingClientRect().bottom - 20;
+    header.dataset.tone = darkSections.some(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom >= y; }) ? 'dark' : 'light';
+  };
+  addEventListener('scroll', setTone, {passive: true}); addEventListener('resize', setTone); setTone();
   let lastY = scrollY;
   addEventListener('scroll', () => {
     const y = scrollY;
@@ -104,6 +109,57 @@
     if (reduce.matches) setPaused(true); else show(0);
   }
 
+  /* ---------- Home: over shot / film / stage / work scroll story ---------- */
+  const overScroll = $('.over-scroll');
+  if (overScroll) {
+    const items = $$('.over-item', overScroll), media = $$('.om', overScroll);
+    let active = -1;
+    const pick = () => {
+      const r = overScroll.getBoundingClientRect();
+      const p = Math.min(.999, Math.max(0, -r.top / (r.height - innerHeight)));
+      const i = reduce.matches ? 0 : Math.floor(p * items.length);
+      if (i === active) return;
+      active = i;
+      items.forEach((el, k) => el.classList.toggle('is-on', k === i));
+      media.forEach((el, k) => {
+        el.classList.toggle('is-on', k === i);
+        const v = el.querySelector('video');
+        if (v) { if (k === i && !reduce.matches) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }
+      });
+    };
+    addEventListener('scroll', () => requestAnimationFrame(pick), {passive: true});
+    pick();
+  }
+
+  /* ---------- Case: full-screen photo viewer ---------- */
+  const lightbox = $('.lightbox');
+  if (lightbox) {
+    const shots = $$('.g-item'), count = $('.lb-count', lightbox);
+    const lbImg = document.createElement('img'); lbImg.alt = '';
+    let at = 0, opener = null;
+    const show = i => {
+      at = (i + shots.length) % shots.length;
+      lightbox.classList.add('is-loading');
+      lbImg.onload = () => lightbox.classList.remove('is-loading');
+      lbImg.src = shots[at].dataset.full;
+      if (!lbImg.isConnected) lightbox.prepend(lbImg);
+      lbImg.alt = shots[at].querySelector('img').alt;
+      count.textContent = `${at + 1} / ${shots.length}`;
+      // Preload neighbours for instant paging.
+      [at + 1, at - 1].forEach(k => { const n = shots[(k + shots.length) % shots.length]; if (n) new Image().src = n.dataset.full; });
+    };
+    shots.forEach((el, i) => el.addEventListener('click', () => { opener = el; show(i); lightbox.showModal(); document.body.classList.add('lock'); }));
+    $('.lb-prev', lightbox).addEventListener('click', () => show(at - 1));
+    $('.lb-next', lightbox).addEventListener('click', () => show(at + 1));
+    $('.lb-close', lightbox).addEventListener('click', () => lightbox.close());
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.close(); });
+    lightbox.addEventListener('close', () => { document.body.classList.remove('lock'); opener?.focus({preventScroll: true}); });
+    lightbox.addEventListener('keydown', e => { if (e.key === 'ArrowRight') show(at + 1); if (e.key === 'ArrowLeft') show(at - 1); });
+    let tx = null;
+    lightbox.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive: true});
+    lightbox.addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(dx) > 40) show(at + (dx < 0 ? 1 : -1)); }, {passive: true});
+  }
+
   /* ---------- Video loops: work cards and tiles play on hover (desktop) or when in view (touch) ---------- */
   const loops = $$('.work-card, .duo-tile').filter(el => el.querySelector('video.loop'));
   const start = el => { if (reduce.matches) return; const v = el.querySelector('video.loop'); if (!v.src) v.src = v.dataset.src; v.play().then(() => el.classList.add('is-playing')).catch(() => {}); };
@@ -159,7 +215,8 @@
   /* ---------- Contact brief: compose, copy, mail ---------- */
   const form = $('#brief-form');
   if (form) {
-    const status = $('#copy-status'), submit = $('button[type=submit]', form), mail = $('.brief-mail', form);
+    const status = $('#copy-status');
+    const mail = {href: ''};
     const service = $('#brief-service');
     const wanted = new URLSearchParams(location.search).get('service');
     if (wanted && $(`option[value="${CSS.escape(wanted)}"]`, service)) service.value = wanted;
@@ -171,19 +228,30 @@
       field('brief-idea') ? `拍攝需求：${field('brief-idea')}` : ''
     ].filter(Boolean).join('\n');
     const syncMail = () => { mail.href = `mailto:oooverimage@gmail.com?subject=${encodeURIComponent('拍攝合作詢問｜' + service.selectedOptions[0].textContent)}&body=${encodeURIComponent(compose())}`; };
-    const reset = () => { submit.classList.remove('copied'); submit.innerHTML = '複製詢問內容<span aria-hidden="true">↗</span>'; status.textContent = ''; delete status.dataset.state; };
+    const reset = () => { status.textContent = ''; delete status.dataset.state; };
     form.addEventListener('input', () => { reset(); syncMail(); });
     form.addEventListener('change', syncMail);
     syncMail();
-    form.addEventListener('submit', async e => {
+    const valid = () => {
+      if (field('brief-idea')) return true;
+      status.textContent = '請先寫下想拍的內容。'; status.dataset.state = 'error'; $('#brief-idea').focus(); return false;
+    };
+    // Primary: open the visitor's mail app with the brief filled in.
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      if (!field('brief-idea')) { status.textContent = '請先寫下想拍的內容。'; status.dataset.state = 'error'; $('#brief-idea').focus(); return; }
+      if (!valid()) return;
+      syncMail();
+      track('inquiry_email_open', {category: service.value});
+      location.href = mail.href;
+      status.textContent = '已開啟郵件程式，確認內容後寄出即可。若沒有開啟，請按「複製內容」，再寄到 oooverimage@gmail.com。';
+      status.dataset.state = 'ok';
+    });
+    $('.brief-copy', form).addEventListener('click', async () => {
+      if (!valid()) return;
       const text = compose();
       try {
         await navigator.clipboard.writeText(text);
-        status.textContent = '已複製，尚未送出。請開啟 Instagram 貼上傳送，或改用 Email 寄出。';
-        status.dataset.state = 'ok';
-        submit.classList.add('copied'); submit.innerHTML = '已複製<span aria-hidden="true">✓</span>';
+        status.textContent = '已複製，尚未寄出。請貼到 Email（oooverimage@gmail.com）或 Instagram 私訊。'; status.dataset.state = 'ok';
         track('inquiry_copy_success', {category: service.value});
       } catch {
         status.textContent = '無法自動複製，請手動選取以下內容：\n\n' + text; status.dataset.state = 'error';
