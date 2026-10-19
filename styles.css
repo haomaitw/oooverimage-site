@@ -611,3 +611,5 @@ h1,h2,.statement-title,.footer-title{text-wrap:balance}
 .frame,.frame:nth-child(3n+2){height:clamp(220px,22vw,340px);width:auto;aspect-ratio:4/5;align-self:auto}
 .frame:nth-child(even){aspect-ratio:3/2}
 @media(max-width:700px){.frame,.frame:nth-child(3n+2){height:200px;width:auto}}
+/* Content right after a dark page head needs its own breathing room (section-tight drops the top padding). */
+.page-head-dark + .section-tight{padding-top:clamp(56px,6vw,96px)}
