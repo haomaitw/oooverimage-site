@@ -585,6 +585,13 @@ h1,h2,.statement-title,.footer-title{text-wrap:balance}
 .page-head-dark .filters button{color:rgb(239 239 239 / 65%)}
 .page-head-dark .filters button:hover,.page-head-dark .filters button[aria-pressed=true]{color:#000}
 .page-head-dark .filters button:hover:not([aria-pressed=true]){color:#fff}
+/* Phones: the filters become separate pills (see the 700px block), so on the dark header they need dark-header pill colours */
+@media(max-width:700px){
+  .page-head-dark .filters{background:none;box-shadow:none}
+  .page-head-dark .filters button{background:rgb(255 255 255 / 10%);color:rgb(239 239 239 / 80%)}
+  .page-head-dark .filters button[aria-pressed=true],.page-head-dark .filters button[aria-pressed=true]:hover{background:#efefef;color:#000}
+  .page-head-dark .filters button:hover:not([aria-pressed=true]){color:#fff}
+}
 .page-head-dark .chip-nav a{border-color:rgb(255 255 255 / 22%);color:#efefef}
 .page-head-dark .chip-nav a:hover{background:#efefef;color:#000;border-color:#efefef}
 
